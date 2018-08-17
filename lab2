@@ -1,0 +1,385 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+class DateCalculator
+{
+        
+        private:
+    int d,m,y;
+    public:
+  
+     DateCalculator(int dd, int mm, int yy)
+    {if((yy<2018)&&(yy>2518))
+    { d=-1;
+        m=-1;
+        y=-1;}
+     else
+     {d=dd;
+     m=mm;
+     y=yy;
+     }
+    }
+    
+    
+    
+    DateCalculator()
+    {
+        d=1;
+        m=1;
+        y=2018;
+    }
+       
+      DateCalculator(int dd)
+        {
+            if ((dd<1)||(dd>365))
+                exit(0);
+            
+            if(!dd%30)
+                if(dd!=60)
+                {m=dd/30;
+                       d=dd%30;
+                  
+                }
+            
+   
+            switch (dd)
+            {case 31:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 151:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 181:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 211:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 212:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 241:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 242:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 243:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 271:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 272:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 273:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 301:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 302:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 303:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 304:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 331:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 332:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 333:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 334:   m=dd/30;
+                       d=dd%30;
+                       break;
+             
+               case 360:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 361:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 362:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 363:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 364:   m=dd/30;
+                       d=dd%30;
+                       break;
+               case 365:   m=dd/30;
+                       d=dd%30;
+                       break;
+             case 366:   m=dd/30;
+                       d=dd%30;
+                       break;
+            default: m=dd/30 +1;
+                       d=dd%30 +1;
+                       break;
+            
+      
+            
+            }
+            
+            
+     
+        
+        }
+    
+    
+    DateCalculator(int dd, int mm)
+        
+    {if((mm>0)&&(mm<13))
+        m=mm;
+     else 
+         exit(0);
+     
+        if ((mm==1)||(mm==3)||(mm==5)||(mm==7)||(mm==8)||(mm==10)||(mm==12))
+        { if((dd>0)&&(d<32))
+                d=dd;
+     else exit(0);
+        }
+     
+     
+        if ((mm==4)||(mm==6)||(mm==9)||(mm==11))
+        { if((dd>0)&&(d<31))
+                d=dd;
+     else exit(0);
+        }
+     if (mm==2)
+         
+       
+        { if((dd>0)&&(d<30))                                         //leap year
+                d=dd;
+     else exit(0);
+        }
+     
+    }
+        
+      
+            
+             void setdate (int dd, int mm)
+        
+    {if((mm>0)&&(mm<13))
+        m=mm;
+     else 
+         exit(0);
+     
+        if ((mm==1)||(mm==3)||(mm==5)||(mm==7)||(mm==8)||(mm==10)||(mm==12))
+        { if((dd>0)&&(d<32))
+                d=dd;
+     else exit(0);
+        }
+     
+     
+        if ((mm==4)||(mm==6)||(mm==9)||(mm==11))
+        { if((dd>0)&&(d<31))
+                d=dd;
+     else exit(0);
+        }
+     if (mm==2)                                                                            //leap year
+         
+       
+        { if((dd>0)&&(d<30))
+                d=dd;
+     else exit(0);
+        }
+     
+    }
+  
+    void print()
+    {if(y<2518)
+    
+         { int c,k,f=0;
+                             
+                switch (m)
+                {
+                    case 1:f=0;break;
+                    case 2:f=1;break;
+                    case 3:k=-1;break;
+                    case 4: k=0;break;
+                    case 5: k=0;break;
+                    case 6: k=1;break;
+                    case 7: k=1;break;
+                    case 8: k=2;break;
+                    case 9: k=3;break;
+                    case 10: k=3;break;
+                    case 11: k=4;break;
+                    case 12: k=4;break;
+                }
+     
+    
+        if(!y%4)
+        { if ((!y%400)||(y%100))
+                k++;}
+
+     
+        c=((m-1)*30+d-1+k+f+y-2018)%7;
+    
+    
+    switch (c)
+     {case 0: cout<<"Monday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;
+      break;
+      
+      case 1: cout<<"Tuesday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;    break;
+      
+      case 2: cout<<"Wednesday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;    break;
+      
+      case 3: cout<<"Thursday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;
+          break;
+      case 4: cout<<"Friday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;
+          break;
+      case 5: cout<<"Saturday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;    break;
+      
+      case 6: cout<<"Sunday, "<<enco(m);
+     cout<<" "<<d<<", "<<y;    break;
+     }
+               }
+     else  if(y>2518)
+      {   cout<<"a date not in the range";
+     
+      }
+     
+     }
+     
+     
+     
+     
+    
+        
+        
+        char* enco(int mm)
+        {
+            switch (mm) 
+            {case 1:return "January";
+             case 2:return "February";
+             case 3:return "March";
+             case 4:return "April";
+             case 5:return "May";
+             case 6:return "June";
+             case 7:return "July";
+             case 8:return "August";
+             case 9:return "September";
+             case 10:return "October";
+             case 11:return "November";
+             case 12:return "December";
+             default: return "error";
+            }
+                        
+            
+            
+
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+ 
+
+void plusday(int days)
+        {
+
+    int k;
+        if ((!y%4)||(!y%400)||(y%100))
+        {
+                k=29;}
+     else k=28;
+     
+     
+    
+while(days>=365)
+{
+    y++;
+    days-=365;
+}    
+   
+        while(days>27)
+    { int a[]={ 31, k, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        days=days - a[m-1];
+        if(m==12)
+        {m=1;y++;}
+        else m++;
+       
+    }   
+    
+ 
+        while(days>=0)
+    {
+         if((m==1)||(m==3)||(m==5)||(m==7)||(m==8)||(m==10)||(m==12))
+            {if(d==31)
+            {d=1;
+            m++;}}
+      else if (m==2)
+      {if ((!y%4)||(!y%400)||(y%100))
+        {if (d==29)
+        {d=1;
+        m++;}}
+     else if(d==28)
+     { d=1;
+       m++;}
+      }
+        
+      else if ((m==4)||(m==6)||(m==9)||(m==11))
+            { if(d==30)
+            {d=1;
+            m++;}}
+    else d++;
+            
+             
+            
+            }
+            }
+            };
+            
+              
+        
+    
+            
+            
+    
+    
+
+
+int main() {
+  int d,m,y;
+    int dayss;
+ 
+    cin>>m>>d>>dayss;
+    DateCalculator U;
+   U.setdate(d,m);
+    cout<<dayss<<" days after ";
+        U.print();
+    cout<<" is ";
+    U.plusday(dayss);
+    U.print();
+    
+    
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    return 0;
+}
+
+
+
+
